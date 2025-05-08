@@ -26,7 +26,7 @@ export class Book {
 
     getPage(type: string) {
 
-        var curr_page = <number>workspace.getConfiguration().get('thiefBook.currPageNumber');
+        var curr_page = <number>workspace.getConfiguration().get('easyBook.currPageNumber');
         var page = 0;
 
         if (type === "previous") {
@@ -66,7 +66,7 @@ export class Book {
         //     }
         // }
 
-        workspace.getConfiguration().update('thiefBook.currPageNumber', this.curr_page_number, true);
+        workspace.getConfiguration().update('easyBook.currPageNumber', this.curr_page_number, true);
         // this.extensionContext.globalState.update("book_page_number", page);
     }
 
@@ -82,19 +82,19 @@ export class Book {
 
         var data = fs.readFileSync(this.filePath!, 'utf-8');
         
-        var line_break = <string>workspace.getConfiguration().get('thiefBook.lineBreak');
+        var line_break = <string>workspace.getConfiguration().get('easyBook.lineBreak');
 
         return data.toString().replace(/\n/g, line_break).replace(/\r/g, " ").replace(/　　/g, " ").replace(/ /g, " ");
     }
 
     init() {
-        this.filePath = workspace.getConfiguration().get('thiefBook.filePath');
-        var is_english = <boolean>workspace.getConfiguration().get('thiefBook.isEnglish');
+        this.filePath = workspace.getConfiguration().get('easyBook.filePath');
+        var is_english = <boolean>workspace.getConfiguration().get('easyBook.isEnglish');
 
         if (is_english === true) {
-            this.page_size = <number>workspace.getConfiguration().get('thiefBook.pageSize') * 2;
+            this.page_size = <number>workspace.getConfiguration().get('easyBook.pageSize') * 2;
         } else {
-            this.page_size = workspace.getConfiguration().get('thiefBook.pageSize');
+            this.page_size = workspace.getConfiguration().get('easyBook.pageSize');
         }
     }
 
